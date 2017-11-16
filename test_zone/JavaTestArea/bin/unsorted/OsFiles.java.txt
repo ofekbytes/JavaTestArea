@@ -1,0 +1,66 @@
+package temp;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class OsFiles 
+{
+	
+	private static int count=0;
+
+		
+	public static boolean getCount() 
+	{
+		System.out.println(" count == " + count);
+		if (count == 2)
+			return true;
+		else
+			return false;
+	}
+	
+
+	/***
+	 * IsfileExist()
+	 * @param StFileName - file name
+	 */
+	private void IsfileExist(String StFileName) 
+	{
+        //count exist files.
+		if (this.count == 2)
+			this.count = 0;
+
+		
+		Path file = Paths.get(StFileName);
+		boolean isRegularExecutableFile = Files.isRegularFile(file) &
+		         Files.isReadable(file) & Files.isExecutable(file);
+		
+		if (isRegularExecutableFile == true)
+		{
+			System.out.println(StFileName + " >>>  File Exist >>> OK");
+			this.count++;
+		}
+		else
+		{
+			System.out.println(StFileName + " >>> File Not-Exist >>> NOT-OK");
+		}
+
+	}
+	
+ 
+	/*
+	 * osFiles - constructor 
+	 * - get 2 String files.
+	 */
+	public OsFiles (String file1, String file2) 
+	{
+		IsfileExist(file1);
+		IsfileExist(file2);
+	}
+	
+//	public static void main(String args[]) {
+//		System.out.println("טסט");
+//	}
+	
+	
+} //OsFiles class.

@@ -1,0 +1,309 @@
+/**
+ * 
+ * ((( Excel )))
+ *  
+ *  components:
+ *  Apache POI 3.17 - open source library - to read and write Microsoft Office XLS and XLSX file format,
+ * 
+ */
+
+
+
+package temp;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.examples.ExcelComparator;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+
+
+public class Excel 
+{
+	//attributes
+    private String stReport = "" ;   // Report.
+    private String [ ] stFileName ;  // Files.
+//
+//  private static String [] ArrFiles = new String[2]; //files Name
+
+    
+	public String[] getStFileName() {
+		return stFileName;
+	}
+
+	public void setStFileName(String[] stFileName) {
+		this.stFileName = stFileName;
+	}
+
+
+
+
+	//temp
+    private static final String CELL_DATA_DOES_NOT_MATCH = "Cell Data does not Match ::";
+    private static final String CELL_FONT_ATTRIBUTES_DOES_NOT_MATCH = "Cell Font Attributes does not Match ::";
+
+    private static class Locator {
+        Workbook workbook;
+        Sheet sheet;
+        Row row;
+        Cell cell;
+    }
+    
+
+    
+    List<String> listOfDifferences = new ArrayList<>();
+    
+    
+    
+    
+/*    private void compareDataInCell(Locator loc1, Locator loc2) {
+        if (isCellTypeMatches(loc1, loc2)) {
+            final CellType loc1cellType = loc1.cell.getCellType();
+            switch(loc1cellType) {
+                case BLANK:
+                case STRING:
+                case ERROR:
+                    isCellContentMatches(loc1,loc2);
+                    break;
+                case BOOLEAN:
+                    isCellContentMatchesForBoolean(loc1,loc2);
+                    break;
+                case FORMULA:
+                    isCellContentMatchesForFormula(loc1,loc2);
+                    break;
+                case NUMERIC:
+                    if (DateUtil.isCellDateFormatted(loc1.cell)) {
+                        isCellContentMatchesForDate(loc1,loc2);
+                    } else {
+                        isCellContentMatchesForNumeric(loc1,loc2);
+                    }
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected cell type: " + loc1cellType);
+            }
+        }
+
+        isCellFillPatternMatches(loc1,loc2);
+        isCellAlignmentMatches(loc1,loc2);
+        isCellHiddenMatches(loc1,loc2);
+        isCellLockedMatches(loc1,loc2);
+        isCellFontFamilyMatches(loc1,loc2);
+        isCellFontSizeMatches(loc1,loc2);
+        isCellFontBoldMatches(loc1,loc2);
+        isCellUnderLineMatches(loc1,loc2);
+        isCellFontItalicsMatches(loc1,loc2);
+        isCellBorderMatches(loc1,loc2,'t');
+        isCellBorderMatches(loc1,loc2,'l');
+        isCellBorderMatches(loc1,loc2,'b');
+        isCellBorderMatches(loc1,loc2,'r');
+        isCellFillBackGroundMatches(loc1,loc2);
+    }
+    */
+    
+    
+    private void compareDataInRow(Locator loc1, Locator loc2) {
+        for (int k = 0; k < loc1.row.getLastCellNum(); k++) {
+            if (loc2.row.getPhysicalNumberOfCells() <= k) return;
+
+            loc1.cell = loc1.row.getCell(k);
+            loc2.cell = loc2.row.getCell(k);
+
+            if ((loc1.cell == null) || (loc2.cell == null)) {
+                continue;
+            }
+
+        //    compareDataInCell(loc1, loc2);
+        }
+    }
+    
+    
+    private void compareDataInSheet(Locator loc1, Locator loc2) {
+        for (int j = 0; j < loc1.sheet.getPhysicalNumberOfRows(); j++) {
+            if (loc2.sheet.getPhysicalNumberOfRows() <= j) return;
+
+            loc1.row = loc1.sheet.getRow(j);
+            loc2.row = loc2.sheet.getRow(j);
+
+            if ((loc1.row == null) || (loc2.row == null)) {
+                continue;
+            }
+
+            compareDataInRow(loc1, loc2);
+        }
+    }
+    
+    
+    /**
+     * Compare data in all sheets.
+     */
+    private void compareDataInAllSheets(Locator loc1, Locator loc2) {
+        for (int i = 0; i < loc1.workbook.getNumberOfSheets(); i++) {
+            if (loc2.workbook.getNumberOfSheets() <= i) return;
+
+            loc1.sheet = loc1.workbook.getSheetAt(i);
+            loc2.sheet = loc2.workbook.getSheetAt(i);
+
+            compareDataInSheet(loc1, loc2);
+        }
+    }
+    
+    
+//    /**
+//     * Compare number of sheets.
+//     */
+//    private void compareNumberOfSheets(Locator loc1, Locator loc2) {
+//        int num1 = loc1.workbook.getNumberOfSheets();
+//        int num2 = loc2.workbook.getNumberOfSheets();
+//        
+////        if (num1 != num2) {
+////            String str = String.format(Locale.ROOT, "%s\nworkbook1 [%d] != workbook2 [%d]",
+////                "Number of Sheets do not match ::",
+////                num1, num2
+////            );
+//
+//            
+//            System.out.println(" " + num1 + "" + num2);
+//            //temp
+//            //listOfDifferences.add(str);
+//            
+//        //}
+//    }
+
+    
+    private void getNumberOfSheet(Workbook wb1, Workbook wb2)
+    {
+    	int workbook1 = wb1.getNumberOfSheets();
+    	int workbook2 = wb2.getNumberOfSheets();
+    	
+    	if (workbook1 != workbook2)
+    		System.out.println("workbook1 = " + workbook1 + "workbook2" + workbook2);
+    	
+    	else
+    		System.out.println("workbook1 and workbook2 are equal to " + workbook1);
+    }
+    
+    
+	 private void excelCompare(String ArrFiles[])
+	 {
+		 
+		 Locator loc1 = new Locator();
+		 Locator loc2 = new Locator();
+       
+		 Workbook wb1;
+		 Workbook wb2;
+	    
+		 try {
+			wb1 = WorkbookFactory.create(new File(ArrFiles[0]));
+		    wb2 = WorkbookFactory.create(new File(ArrFiles[1]));	    
+		    
+		     for (String d : ExcelComparator.compare(wb1, wb2)) {
+		    	 stReport = stReport + d;
+		    	 System.out.println(d);
+		     }
+
+//		     getNumberOfSheet(wb1,wb2); 
+		     
+		     //System.out.println(wb1.getNumberOfSheets());
+		     //compareNumberOfSheets(loc1,loc2);
+		   
+		     
+ 	        
+		     wb2.close();
+		     wb1.close();
+
+		 } catch (EncryptedDocumentException e) {
+			 // TODO Auto-generated catch block
+			 System.out.println("\n<<< Attention >>>  " + e.getMessage());
+			 e.printStackTrace();
+		 } catch (InvalidFormatException e) {
+			 // TODO Auto-generated catch block
+			 System.out.println("\n<<< Attention >>>  " + e.getMessage());
+			 e.printStackTrace();
+		 } catch (IOException e) {
+			 // TODO Auto-generated catch block
+			 System.out.println("\n<<< Attention >>>  " + e.getMessage());
+			 e.printStackTrace();
+		 }
+	     
+	 }
+
+
+    
+    
+	//file exist yes/no.
+	private boolean IsfileExist(String StFileName) {
+		
+		Path file = Paths.get(StFileName);
+		boolean isRegularExecutableFile = Files.isRegularFile(file) &
+		         Files.isReadable(file) & Files.isExecutable(file);
+		
+		if (isRegularExecutableFile == true)
+		{
+			System.out.println(StFileName + " >>>  File Exist >>> OK");
+		}
+		else
+		{
+			System.out.println(StFileName + " >>> File Not-Exist >>> NOT-OK");
+		}
+		
+		return isRegularExecutableFile;
+	}    
+    
+    
+
+	
+
+	
+	
+	public static void main(String[] args) 
+	{
+		
+		//TODO check if String[] array contain any file/s name.
+		String [] ArrFiles = new String[2];
+		ArrFiles[0] =  "C://example//ex1.xlsx";
+		ArrFiles[1] =  "C://example//ex2.xlsx";
+		
+//		String stFileName1 = "C://example//ex1.xlsx";
+//		String stFileName2 = "C://example//ex2.xlsx";
+		
+		
+//		//System.out.println("טסט");
+		
+		Excel ex = new Excel();
+		
+
+		Boolean file1 = ex.IsfileExist(ArrFiles[0]); //("C:/example/ex1.xlsx");
+		Boolean file2 = ex.IsfileExist(ArrFiles[1]); //("C:/example/ex2.xlsx");
+		
+		if ((file1 == true) || (file2 == true))
+		{
+			ex.excelCompare(ArrFiles); //compare array[2]			
+		}
+		else
+		{
+			System.out.println("\n<<< Attention >>>  nProgram Ended !!! \n because one of the excel file is missing. \n check the ''file name'' and the ''file path'' \n and try again");
+		}
+		
+//		//print report
+//		System.out.println(">>>>>>");
+//		System.out.println("Report" + ex.stReport);
+		
+		
+	}
+	
+}

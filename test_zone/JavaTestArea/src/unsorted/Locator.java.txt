@@ -1,0 +1,13 @@
+package temp;
+
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+
+public class Locator {
+    Workbook workbook;
+    Sheet sheet;
+    Row row;
+    Cell cell;
+}

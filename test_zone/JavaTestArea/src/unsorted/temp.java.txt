@@ -1,0 +1,186 @@
+package temp;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+
+//temp - zone - keep code for a while.
+
+
+public class temp
+{
+	
+	/****
+	 * 	
+	 * @param file1
+	 * @param file2
+	 * @return
+	 */
+		private int  excelCompare(String file1, String file2)
+		{
+			InputStream xlsFile1;
+			InputStream xlsFile2;
+			int number = 1;
+			
+			
+			int excelTotalSheet = 0;
+			
+				try {
+					// File #1
+					xlsFile1 = new FileInputStream(file1); 
+					XSSFWorkbook xb1 = new XSSFWorkbook(xlsFile1);
+					
+					// File #2
+					xlsFile2 = new FileInputStream(file2); 
+					XSSFWorkbook xb = new XSSFWorkbook(xlsFile2);
+					
+					
+					
+					
+					//total Sheets.
+					excelTotalSheet =  xb1.getNumberOfSheets();
+					
+					//excel file has no sheets/ empty file.
+					if (xb1.getNumberOfSheets() <= 0)
+						return 0;
+					
+					
+					XSSFSheet sheet = xb1.getSheetAt(0); //sheet #1
+					
+					
+					//Sheet Count + Name
+					System.out.println("excel Total Sheet == " + excelTotalSheet + " ,Sheet Name == " + sheet.getSheetName() );			
+					
+					
+					Iterator<Row> Irows  = sheet.iterator();
+					
+					while (Irows.hasNext()) {
+						System.out.println("");
+						Row row = Irows.next();
+						
+						Iterator<Cell> Icell = row.cellIterator();
+						
+						while (Icell.hasNext()) 
+						{
+							
+							Cell cell = Icell.next();
+							
+						
+							switch (cell.getCellTypeEnum())
+							{
+							case STRING:
+								//System.out.println( cell.getAddress() + " == " + cell.getStringCellValue() );
+								System.out.print("   " + cell.getStringCellValue() );
+								break;
+							case NUMERIC:
+								//System.out.println( cell.getAddress() + " " + cell.getNumericCellValue() );
+								System.out.print("   " + cell.getNumericCellValue() );
+								break;
+							case BOOLEAN:
+								//System.out.println( cell.getAddress() + " " + cell.getBooleanCellValue() );
+								System.out.print("   " + cell.getBooleanCellValue() );
+								break;	
+							default: 
+								System.out.println("Type is not: String ,Number ,Boolean");
+							}
+
+							
+						} //col
+						
+					} //row
+
+					
+					//xb1.close();
+					xlsFile1.close();
+					
+					
+				} 
+				catch (FileNotFoundException e) 
+				{
+					// TODO Auto-generated catch block
+					System.out.println("\nError: " + file1 + " >>> File Not Found\n");
+					e.printStackTrace();
+				} 
+				catch (IOException e) 
+				{
+					// TODO Auto-generated catch block
+					System.out.println("2");
+					e.printStackTrace();
+					
+				}
+
+
+				return number;
+		}
+		
+		
+		
+		public void getOsInformation () 
+		{			
+			String osName = System.getProperty( "os.name" ).toLowerCase();
+			String className = null;
+			String methodName = "getUsername";
+
+			if( osName.contains( "windows" ) ){
+			    className = "com.sun.security.auth.module.NTSystem";
+			    methodName = "getName";
+			}
+			else if( osName.contains( "linux" ) ){
+			    className = "com.sun.security.auth.module.UnixSystem";
+			}
+			else if( osName.contains( "solaris" ) || osName.contains( "sunos" ) ){
+			    className = "com.sun.security.auth.module.SolarisSystem";
+			}
+
+			if( className != null ){
+				
+			    try {
+					Class<?> c = Class.forName( className );
+					Method method = c.getDeclaredMethod( methodName );
+					Object o = c.newInstance();
+					System.out.println( method.invoke( o ) );
+					
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchMethodException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}			    
+			}
+		}
+		
+		
+		public static void main (String args[]) 
+		{		
+			
+		}
+		
+}
+	

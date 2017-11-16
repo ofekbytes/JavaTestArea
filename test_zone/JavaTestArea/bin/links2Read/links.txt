@@ -1,0 +1,148 @@
+
+
+
+##------------##
+## 12.11.2017 ##
+##------------##
+
+
+## Angular folder ##
+<script src="/bower_components/angular/angular.js"></script>
+
+
+
+### swing Example ###
+https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html#SimpleTableDemo
+
+
+## DataTable ##
+
+
+## DataTable - oracle ##
+https://docs.oracle.com/javase/tutorial/uiswing/components/table.html
+https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html#SimpleTableDemo
+
+
+
+## DataTable with Json ##
+http://starredmediasoft.com/datatables-examples-some-useful-hints-for-creating-advanced-tables/
+
+## JSON ##
+http://json.org/
+https://www.mkyong.com/java/json-simple-example-read-and-write-json/
+
+
+******
+http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf
+
+
+
+****
+http://www.mkyong.com/tutorials/java-json-tutorials/
+https://code.google.com/archive/p/json-simple/
+https://github.com/fangyidong/json-simple
+
+
+
+
+
+## DataTable Gui Example##
+https://www.thoughtco.com/a-simple-table-example-java-code-program-2033892
+
+
+
+## Language in Sysout ##
+http://www.oracle.com/us/technologies/java/locale-140624.html
+
+
+//Hebrew, Israel, he_IL
+-----------------------------------------------------------------
+Locale deLocale = new Locale("he", "IL"); //Hebew
+Locale deLocale = new Locale("de", "DE"); //German	
+Locale frLocale = new Locale("fr", "FR");
+System.out.println("Default language name (default): " + 
+                    deLocale.getDisplayLanguage());
+-----------------------------------------------------------------
+
+
+
+
+## Data Table Using jQuery and Bootstrap ##
+https://www.youtube.com/watch?v=dONi5PSU50A
+
+
+## filmstro - 1 minutes film. ##
+https://filmstro.com/filmriot
+
+
+
+
+##-------------##
+## old - links ##
+##-------------##
+
+
+linkes to read:
+
+
+API/ REST
+https://www.youtube.com/watch?v=7YcW25PHnAA
+
+
+
+https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
+https://dev.twitter.com/rest/reference/post/statuses/update
+https://he.wikipedia.org/wiki/REST
+https://he.wikipedia.org/wiki/%D7%90%D7%A8%D7%9B%D7%99%D7%98%D7%A7%D7%98%D7%95%D7%A8%D7%AA_%D7%AA%D7%95%D7%9B%D7%A0%D7%94
+https://he.wikipedia.org/wiki/%D7%9E%D7%9E%D7%A9%D7%A7_%D7%AA%D7%9B%D7%A0%D7%95%D7%AA_%D7%99%D7%99%D7%A9%D7%95%D7%9E%D7%99%D7%9D
+
+
+https://www.youtube.com/watch?v=7YcW25PHnAA
+https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
+
+
+http://maps.googleapis.com/maps/api/geocode/json?address=Chicago
+https://graph.facebook.com/youtube?fields=id,name,likes
+
+
+
+//api  requestsite									
+https://apigee.com/console/instagram?apig_cc=1
+
+
+
+
+https://he.wikipedia.org/wiki/Hibernate
+https://he.wikipedia.org/wiki/DevOps
+https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%AA%D7%95%D7%97_%D7%AA%D7%95%D7%9B%D7%A0%D7%94_%D7%96%D7%A8%D7%99%D7%96
+https://en.wikipedia.org/wiki/Jenkins_(software)
+https://en.wikipedia.org/wiki/Jenkins_(software)
+https://en.wikipedia.org/wiki/Mathematical_optimization
+https://en.wikipedia.org/wiki/Optimization_(disambiguation)
+
+
+???
+https://www.jobbing.co.il/jtest/takanon.pdf
+
+
+visa nitan
+https://myaccount.payoneer.com/MainPage/Transactions.aspx
+https://myaccount.payoneer.com/login/login.aspx?pid=100010910&langid=2
+postil231556
+2..3
+id is old password
+answer: itzhak
+
+
+make mynotepad.txt
+
+
+https://www.youtube.com/watch?v=7YcW25PHnAA
+
+API (Application Programming Interface)
+REST (REpresentational State Transfer)
+call from a client to a server, receiver a data back over http protocol
+
+
+
+

@@ -1,0 +1,228 @@
+
+read.me
+
+
+Data-Table
+#1 >> https://github.com/martincooper/java-datatable/blob/master/README.md
+#2 >> http://toolsqa.com/cucumber/data-tables-in-cucumber/
+#3 >> https://zendguru.wordpress.com/2009/02/24/java-creating-data-table-in-java/
+#4 >> gui >> https://docs.oracle.com/javase/tutorial/uiswing/components/table.html
+#5 >>  
+
+
+https://poi.apache.org/spreadsheet/quick-guide.html
+
+
+https://www.mkyong.com/java/apache-poi-reading-and-writing-excel-file-in-java/
+
+
+--temp.txt--
+
+
+//						if (cell.getCellTypeEnum() == CellType.STRING)
+//						{
+//							System.out.println("String " + cell.getStringCellValue());							
+//						}
+//						
+//						
+//						if (cell.getCellTypeEnum() == CellType.NUMERIC)
+//						{
+//							System.out.println("Number " + cell.getNumericCellValue());
+//						}
+//						
+//						
+//						if (cell.getCellTypeEnum() == CellType.BOOLEAN)
+//						{
+//							System.out.println("boolean " + cell.getNumericCellValue());
+//						
+
+
+
+
+//						switch (cell.getCellTypeEnum())
+//						{
+//						case STRING:
+//							System.out.println(cell.getAddress() + " == " + cell.getStringCellValue() );
+//							break;
+//						case NUMERIC:
+//							System.out.println(cell.getAddress() + " " + cell.getNumericCellValue() );
+//							break;
+//						case BOOLEAN:
+//							System.out.println(cell.getAddress() + " " + cell.getBooleanCellValue() );
+//							break;	
+//						default: 
+//							System.out.println("Type is not: String ,Number ,Boolean");
+//						}
+
+
+
+
+//						String cellXY = cell.getAddress().toString();
+//						if (cellXY == cellXY)
+//							System.out.println("True");
+//						else
+//							System.out.println("false");
+//						System.out.println(cellXY);
+
+
+
+
+//				//String value = col.getStringCellValue();
+//				XSSFRow row = sheet.getRow(0); //row 1
+//				XSSFCell col = row.getCell(0); //col 1
+//
+				
+//				//output data
+//				System.out.println("sheet = " + sheet);
+//				System.out.println("row = " + row);
+//				System.out.println("col = " + col);
+//				//System.out.println("col value == " + value );
+				
+
+
+
+
+//
+//
+	
+	private int  excelProperty(String file)
+	{
+		
+		int excelTotalSheet = 0;
+		int excelTotalRow = 0;
+		int excelTotalcol = 0;		
+		InputStream xlsFile;
+
+		
+		
+		try {
+			xlsFile = new FileInputStream(file); 
+			XSSFWorkbook xb1 = new XSSFWorkbook(xlsFile);
+				
+								
+			//total Sheets.
+			excelTotalSheet =  xb1.getNumberOfSheets();
+								
+				
+			//excel file has no sheets/ empty file.
+			if (xb1.getNumberOfSheets() <= 0)
+				return 0;
+				
+				
+			XSSFSheet sheet = xb1.getSheetAt(0); //sheet #1
+				
+				
+			//Sheet Count + Name
+			System.out.println("excel Total Sheet == " + excelTotalSheet + " ,Sheet Name == " + sheet.getSheetName() );			
+				
+				
+			Iterator<Row> Irows  = sheet.iterator();
+
+			while (Irows.hasNext()) {
+				System.out.println(""); //new line
+				
+				Row row = Irows.next(); //row.next
+				
+				excelTotalcol = 0; //
+				excelTotalRow++;
+				
+				System.out.println("row=" + excelTotalRow + "col=" + excelTotalRow);
+
+				//System.out.println("Row number == " + row.getRowNum()); //current row
+				
+				
+				Iterator<Cell> Icell = row.cellIterator();
+					
+				while (Icell.hasNext()) 
+				{
+						
+					Cell cell = Icell.next();
+						
+					excelTotalcol++; //count col
+					
+					switch (cell.getCellTypeEnum())
+						{
+						case STRING:
+							//System.out.println( cell.getAddress() + " == " + cell.getStringCellValue() );
+							System.out.print("   " + cell.getStringCellValue() );
+							break;
+						case NUMERIC:
+							//System.out.println( cell.getAddress() + " " + cell.getNumericCellValue() );
+							System.out.print("   " + cell.getNumericCellValue() );
+							break;
+						case BOOLEAN:
+							//System.out.println( cell.getAddress() + " " + cell.getBooleanCellValue() );
+							System.out.print("   " + cell.getBooleanCellValue() );
+							break;	
+						default: 
+							System.out.println("Type is not: String ,Number ,Boolean");
+						}
+
+						
+					} //col
+					
+				} //row
+
+				
+				//xb1.close();
+				xlsFile.close();
+				
+				
+			} 
+			catch (FileNotFoundException e) 
+			{
+				// TODO Auto-generated catch block
+				System.out.println("\nError: " + file + " >>> File Not Found\n");
+				e.printStackTrace();
+			} 
+			catch (IOException e) 
+			{
+				// TODO Auto-generated catch block
+				System.out.println("2");
+				e.printStackTrace();
+			}
+
+
+			return 1;
+	}
+	
+	///////
+	//////
+	//////
+	
+	
+
+//
+//
+
+
+
+
+<dependencies>
+   <dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi</artifactId>
+	<version>3.9</version>
+   </dependency>
+   <dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi-ooxml</artifactId>
+	<version>3.9</version>
+   </dependency>
+   <dependency>
+	<groupId>org.apache.xmlbeans</groupId>
+	<artifactId>xmlbeans</artifactId>
+	<version>2.6.0</version>
+  </dependency>
+  <dependency>
+	<groupId>org.apache.poi</groupId>
+	<artifactId>poi-ooxml-schemas</artifactId>
+	<version>3.10-FINAL</version>
+  </dependency>
+  <dependency>
+	<groupId>dom4j</groupId>
+	<artifactId>dom4j</artifactId>
+	<version>1.6.1</version>
+  </dependency> 
+</dependencies> 
+

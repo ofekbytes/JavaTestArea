@@ -1,0 +1,93 @@
+package temp;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class OsInformation 
+{
+
+	private String userId = "";
+	private String osName = "";
+	private String fullName = "";
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	
+	public OsInformation() 
+	{
+ 
+		
+		String osName = System.getProperty( "os.name" ).toLowerCase();
+		String className = null;
+		String methodName = "getUsername";
+
+		String fullName = System.getProperty("os.getSimpleName");
+		
+		if( osName.contains( "windows" ) ){
+		    className = "com.sun.security.auth.module.NTSystem";
+		    methodName = "getName";
+		    
+		}
+		else if( osName.contains( "linux" ) ){
+		    className = "com.sun.security.auth.module.UnixSystem";
+		}
+		else if( osName.contains( "solaris" ) || osName.contains( "sunos" ) ){
+		    className = "com.sun.security.auth.module.SolarisSystem";
+		}
+
+		if( className != null )
+		{
+			
+		    try {
+				Class<?> c = Class.forName( className );
+				Method method = c.getDeclaredMethod( methodName );
+				Object o = c.newInstance();
+				//System.out.println( method.invoke( o ) );
+				
+				//
+				//attributes.
+				this.osName = osName;
+				this.userId =  (String) method.invoke( o );				
+				//
+				//
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			    
+		}
+		
+		
+	}
+
+
+	public static void main(String[] args) 
+	{
+		OsInformation osi = new OsInformation();
+		System.out.println("Os: " + osi.osName);
+		System.out.println("UserName: " + osi.userId);
+		System.out.println("full name: " + osi.fullName);
+	}
+
+}

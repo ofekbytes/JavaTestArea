@@ -1,0 +1,22 @@
+package temp;
+
+
+public class ConfigData 
+{
+	
+	
+	public void readConfigData() {
+		
+	}
+
+	
+	public void WriteConfigData() {
+		
+	}
+	
+
+	//constructor
+	public ConfigData() { }
+
+
+}
