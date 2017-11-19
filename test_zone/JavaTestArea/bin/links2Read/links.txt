@@ -9,16 +9,39 @@
 #### maven - java ####
 
 http://maven.apache.org/
+http://maven.apache.org/install.html
 https://maven.apache.org/guides/getting-started/
-https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
-
+https://maven.apache.org/repository-management.html
 https://maven.apache.org/configure.html
 
+--steps--
+* https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+* https://maven.apache.org/guides/getting-started/index.html#How_do_I_compile_my_test_sources_and_run_my_unit_tests
+* https://maven.apache.org/guides/mini/guide-configuring-maven.html
+* https://maven.apache.org/guides/introduction/introduction-to-archetypes.html
+** https://maven.apache.org/archetypes/index.html
+
+* https://maven.apache.org/guides/mini/guide-creating-archetypes.html ****
+* https://maven.apache.org/guides/mini/guide-configuring-maven.html ***
+
+*??** https://www.apache.org/dev/release-signing#verifying-signature
+
+
+https://maven.apache.org/settings.html
+
+configuring pom (proxie)
+https://maven.apache.org/guides/mini/guide-proxies.html
+https://maven.apache.org/guides/mini/guide-mirror-settings.html
+https://maven.apache.org/guides/mini/guide-configuring-maven.html
 
 pom.xml
 https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
 
-----example:pom.xml----
+<<<<
+<<<< [ pom.xml ] >>>>
+<<<<
+
+----example:pom.xml basic new project config----
 <project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mycompany.app</groupId>
@@ -27,10 +50,116 @@ https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
 </project>
 ---------------
 
-configuring pom (proxies)
-https://maven.apache.org/guides/mini/guide-proxies.html
-https://maven.apache.org/guides/mini/guide-mirror-settings.html
+
+
+----example2-----------------
+<settings>
+  ...
+  <servers>
+    <server>
+      <id>repo1</id>
+      <username>repouser</username>
+      <!-- other optional elements:
+        <password>my_login_password</password>
+        <privateKey>/path/to/identity</privateKey> (default is ~/.ssh/id_dsa)
+        <passphrase>my_key_passphrase</passphrase>
+      -->
+    </server>
+  ...
+  </servers>
+  ...
+</settings>
+--------------------------
+
+
+-----Gson Maven 2.8.2------
+<dependencies>
+    <!--  Gson: Java to Json conversion -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.2</version>
+      <scope>compile</scope>
+    </dependency>
+</dependencies>
+---------------------------------------------
+
+
+
+-----Gson Maven 2.6.2------
+<dependency>
+    	<groupId>com.google.code.gson</groupId>
+    	<artifactId>gson</artifactId>
+    	<version>2.6.2</version>
+    	<scope>compile</scope>
+</dependency>
+---------------------------------------------
+
+
+
+------Apache POI » 3.2-FINAL---------------
+
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.2-FINAL</version>
+</dependency>
+---------------------------------------------
+
+
+
+------Apache POI » 3.7---------------
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.7</version>
+</dependency>
+---------------------------------------------
+
+
+
+------Apache POI » 3.14---------------
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>3.14</version>
+</dependency>
+---------------------------------------------
+
+
+
+---temp links--
+https://maven.apache.org/download.cgi
+https://maven.apache.org/guides/getting-started/index.html#How_do_I_compile_my_test_sources_and_run_my_unit_tests
+https://maven.apache.org/configure.html
+http://maven.apache.org/configure.html
+http://maven.apache.org/install.html
+http://maven.apache.org/
+https://www.apache.org/licenses/
+http://maven.apache.org/
+https://www.google.co.il/search?q=npm+install+apache+maven+3.5.2&oq=npm+install+apache+maven+3.5.2&aqs=chrome..69i57.3956j0j4&sourceid=chrome&ie=UTF-8
+https://www.apache.org/dev/release-signing#verifying-signature
+https://maven.apache.org/guides/mini/guide-encryption.html
 https://maven.apache.org/guides/mini/guide-configuring-maven.html
+https://maven.apache.org/maven-logging.html
+https://maven.apache.org/settings.html
+https://maven.apache.org/repository-management.html
+https://maven.apache.org/configure.html
+https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+https://maven.apache.org/guides/mini/guide-configuring-maven.html
+???
+https://maven.apache.org/background/history-of-maven.html
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+------GSON Example-----------
+
+https://www.mkyong.com/java/how-do-convert-java-object-to-from-json-format-gson-api/
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
