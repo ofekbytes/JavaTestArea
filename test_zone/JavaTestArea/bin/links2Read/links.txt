@@ -1,5 +1,38 @@
 
 
+##------------##
+## 19.11.2017 ##
+##------------##
+
+
+
+#### maven - java ####
+
+http://maven.apache.org/
+https://maven.apache.org/guides/getting-started/
+https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+
+https://maven.apache.org/configure.html
+
+
+pom.xml
+https://maven.apache.org/guides/introduction/introduction-to-the-pom.html
+
+----example:pom.xml----
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-module</artifactId>
+  <version>1</version>
+</project>
+---------------
+
+configuring pom (proxies)
+https://maven.apache.org/guides/mini/guide-proxies.html
+https://maven.apache.org/guides/mini/guide-mirror-settings.html
+https://maven.apache.org/guides/mini/guide-configuring-maven.html
+
+
 
 ##------------##
 ## 12.11.2017 ##
