@@ -1,7 +1,28 @@
 package database;
 
-public class MsSql {
+import java.sql.*;
 
+public class MsSql 
+{
+
+	//static final void String JDBC_DRIVER = "";
+	
+	
+	/****
+	 * 
+	 * @return true= connection succeeded (OK)
+	 * @return false= connection failed (NOT-OK)
+	 */
+	public boolean connect () 
+	{
+		
+		
+		
+		
+		return false; 
+	}
+	
+	
 	public MsSql() {
 		// TODO Auto-generated constructor stub
 	}
