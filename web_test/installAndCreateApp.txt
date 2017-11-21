@@ -1,0 +1,36 @@
+
+## install angular ##
+$ npm install -g @angular/cli
+
+## created target code directory ##
+$ cd wanted-folder-directory
+
+## create a new project ##
+$ ng new take1-app
+
+## open service ##
+$ ng serve
+
+## open service - with browser ##
+$ ng serve --open
+
+## create Angular cli ##
+$ ng new
+
+## open browser with this address ##
+http://localhost:4200/
+
+
+
+
+##
+Generate components, routes, services and pipes with a simple command.
+The CLI will also create simple test shells for all of these.
+##
+$ ng generate
+
+## Test the app ##
+$ ng serve
+
+
+-!- Test, Lint, Format, breeze, clang format
