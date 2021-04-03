@@ -10,13 +10,23 @@
     <name>Maven Toolchains</name>
     <version>1.0</version>
     <url>http://maven.apache.org</url>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
+    <!-- <dependencies> -->
+        <!-- <dependency> -->
+            <!-- <groupId>junit</groupId> -->
+            <!-- <artifactId>junit</artifactId> -->
+            <!-- <version>3.8.1</version> -->
+            <!-- <scope>test</scope> -->
+        <!-- </dependency> -->
+
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+    </dependency>
+
+
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
